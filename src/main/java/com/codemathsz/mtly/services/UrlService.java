@@ -25,6 +25,11 @@ public class UrlService {
     @Autowired
     private UrlRepository repository;
 
+    public Url getOriginalUrl(String keyUrl){
+        String shortUrl = BASE_URL+keyUrl;
+        return this.repository.findByShortUrl(shortUrl).orElseThrow( () -> new RuntimeException("Url não encontrada"));
+    }
+
     public ResponseEntity<Url> createShortUrl(CreateUrlDTO createUrlDTO){
         var shortUrl = generateShortUrl();
         var newUrl = Url.builder()
