@@ -1,0 +1,13 @@
+package com.codemathsz.mtly;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class MtlyProjectApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MtlyProjectApplication.class, args);
+	}
+
+}
