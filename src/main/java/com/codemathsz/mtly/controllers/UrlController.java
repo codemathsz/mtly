@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/")
@@ -21,10 +22,15 @@ public class UrlController {
     public void get(@PathVariable String keyUrl, HttpServletResponse response){
         var url = this.service.getOriginalUrl(keyUrl);
         try {
-            response.sendRedirect(url.getOriginalUrl());
+            if (url.getExpiredAt().isBefore(LocalDateTime.now())) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "link expirado");
+            } else {
+                response.sendRedirect(url.getOriginalUrl());
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @PostMapping("/createUrl")
