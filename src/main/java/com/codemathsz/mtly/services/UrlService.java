@@ -8,11 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.security.SecureRandom;
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Service
